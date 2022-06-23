@@ -4,5 +4,5 @@
 
 ### 1주 차
 
-- 세계 부자 리스트
-    - [CodeSandBox Link](https://codesandbox.io/s/nextjs-blueprint-forked-017s6z?file=/pages/)
+- 세계 부자 리스트(22.06.23)
+  - [CodeSandBox Link](https://codesandbox.io/s/nextjs-blueprint-forked-017s6z?file=/pages/)
