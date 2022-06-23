@@ -30,19 +30,27 @@ export default function Detail() {
       </nav>
       <div className="detail_box">
         <div className="photo">
-          <img src={billion?.squareImage} />
+          {billion?.squareImage === "https:undefined" ? (
+            <div
+              style={{
+                width: 416,
+                height: 416,
+                background: "#666",
+                borderRadius: 20,
+              }}
+            />
+          ) : (
+            <img src={billion?.squareImage} />
+          )}
         </div>
         <div className="info_box">
-          <div>
-            Name: <span style={{ fontWeight: 600 }}>{billion?.name}</span>
-          </div>
           <div>
             Nationality:{" "}
             <span style={{ fontWeight: 600 }}>{billion?.country}</span>
           </div>
           <div>
             industries:{" "}
-            {billion?.industries.map((industry, idx) => (
+            {billion?.industries?.map((industry, idx) => (
               <span style={{ fontWeight: 600 }} key={industry + (idx + "")}>
                 {industry}
               </span>
@@ -61,12 +69,12 @@ export default function Detail() {
           </div>
           <div
             className={
-              billion?.financialAssets.length > 5
+              billion?.financialAssets?.length > 5
                 ? "assets asset_base"
                 : "asset_base"
             }
           >
-            {billion?.financialAssets.map((asset, idx) => (
+            {billion?.financialAssets?.map((asset, idx) => (
               <div
                 style={{
                   padding: 5,
@@ -88,26 +96,40 @@ export default function Detail() {
       <div className="description" style={{ padding: 20 }}>
         <div style={{ fontSize: 26 }}>About : </div>
         <div style={{ paddingTop: 10, paddingLeft: 20, paddingRight: 20 }}>
-          {billion?.about.map((description) => (
-            <div key={description} style={{ fontSize: 18, marginBottom: 5 }}>
-              &middot; {description}
+          {billion?.about ? (
+            <div>
+              {billion?.about?.map((description) => (
+                <div
+                  key={description}
+                  style={{ fontSize: 18, marginBottom: 5 }}
+                >
+                  &middot; {description}
+                </div>
+              ))}
+              <span
+                onClick={onToggleMore}
+                className={toggleMore ? "hidden" : ""}
+                style={{ cursor: "pointer" }}
+              >
+                more...
+              </span>
+              <div className={toggleMore ? "" : "hidden"}>
+                {billion?.bio.map((more) => (
+                  <div style={{ fontSize: 18, marginBottom: 5 }} key={more}>
+                    {" "}
+                    &middot; {more}
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
-          <span
-            onClick={onToggleMore}
-            className={toggleMore ? "hidden" : ""}
-            style={{ cursor: "pointer" }}
-          >
-            more...
-          </span>
-          <div className={toggleMore ? "" : "hidden"}>
-            {billion?.bio.map((more) => (
+          ) : (
+            billion?.bio.map((more) => (
               <div style={{ fontSize: 18, marginBottom: 5 }} key={more}>
                 {" "}
                 &middot; {more}
               </div>
-            ))}
-          </div>
+            ))
+          )}
         </div>
       </div>
       <style jsx>{`
@@ -145,9 +167,10 @@ export default function Detail() {
             0 -6px 16px -6px rgba(0, 0, 0, 0.025);
         }
         .info_box {
-          width: 30%;
+          width: fit-content;
           display: flex;
           flex-flow: column wrap;
+          padding-left: 5%;
         }
         .info_box div {
           padding: 10px;

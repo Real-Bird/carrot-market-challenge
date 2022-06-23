@@ -16,11 +16,20 @@ export default function Home() {
         {billions?.map((item) => (
           <Link key={item.id} href={`/billion/${item.id}`}>
             <a className="info_box">
-              <img className="photo" src={item.squareImage} />
+              {item.squareImage === "https:undefined" ? (
+                <div
+                  className="photo"
+                  style={{
+                    background: "#666",
+                  }}
+                />
+              ) : (
+                <img className="photo" src={item.squareImage} />
+              )}
               <div>
                 <div className="name">
-                  {item.name.length > 15
-                    ? item.name.slice(0, 15) + "..."
+                  {item.name.length > 26
+                    ? item.name.slice(0, 26) + "..."
                     : item.name}
                 </div>
                 <div className="info">
