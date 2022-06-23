@@ -59,7 +59,10 @@ export default function Detail() {
             <br />
             <span>[Company, Shares]:</span>
           </div>
-          <div style={{ height: 120, overflowY: "scroll", width: 360 }}>
+          <div
+            className={billion?.financialAssets.length > 5 ? "assets" : ""}
+            style={{ maxHeight: 180, width: 360 }}
+          >
             {billion?.financialAssets.map((asset, idx) => (
               <div
                 style={{
@@ -79,7 +82,7 @@ export default function Detail() {
           </div>
         </div>
       </div>
-      <div style={{ padding: 20 }}>
+      <div className="description" style={{ padding: 20 }}>
         <div style={{ fontSize: 26 }}>About : </div>
         <div style={{ paddingTop: 10, paddingLeft: 20, paddingRight: 20 }}>
           {billion?.about.map((description) => (
@@ -130,7 +133,7 @@ export default function Detail() {
           margin: 0 auto;
         }
         .photo {
-          padding: 10px;
+          padding: 10px 3%;
         }
         .photo img {
           border-radius: 5%;
@@ -148,6 +151,16 @@ export default function Detail() {
         }
         .final_assets {
           width: 80%;
+        }
+        .assets {
+          overflow-y: scroll;
+        }
+        .description {
+          width: fit-content;
+          margin: 0 auto;
+          display: flex;
+          flex-flow: column wrap;
+          justify-content: center;
         }
       `}</style>
     </div>
