@@ -54,14 +54,17 @@ export default function Detail() {
               {Math.round(billion?.netWorth / 1000)}B
             </span>
           </div>
-          <div className="final_assets">
+          <div className="financial_assets">
             Financial Assets
             <br />
             <span>[Company, Shares]:</span>
           </div>
           <div
-            className={billion?.financialAssets.length > 5 ? "assets" : ""}
-            style={{ maxHeight: 180, width: 360 }}
+            className={
+              billion?.financialAssets.length > 5
+                ? "assets asset_base"
+                : "asset_base"
+            }
           >
             {billion?.financialAssets.map((asset, idx) => (
               <div
@@ -128,9 +131,9 @@ export default function Detail() {
           width: 90%;
           display: flex;
           flex-flow: row wrap;
-          justify-content: center;
+          justify-content: start;
           align-items: start;
-          margin: 0 auto;
+          margin-left: 10%;
         }
         .photo {
           padding: 10px 3%;
@@ -142,6 +145,7 @@ export default function Detail() {
             0 -6px 16px -6px rgba(0, 0, 0, 0.025);
         }
         .info_box {
+          width: 30%;
           display: flex;
           flex-flow: column wrap;
         }
@@ -149,14 +153,18 @@ export default function Detail() {
           padding: 10px;
           font-size: 20px;
         }
-        .final_assets {
+        .financial_assets {
           width: 80%;
+        }
+        .asset_base {
+          max-height: 180px;
+          width: 90%;
         }
         .assets {
           overflow-y: scroll;
         }
         .description {
-          width: fit-content;
+          width: 80%;
           margin: 0 auto;
           display: flex;
           flex-flow: column wrap;
